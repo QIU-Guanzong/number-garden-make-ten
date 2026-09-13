@@ -24,6 +24,13 @@ def assert_button_targets(page):
     assert not small, f"buttons below 48 CSS px: {small}"
 
 
+def assert_ten_slots(page):
+    slots = page.locator(".ten-frame .frame-space").evaluate_all(
+        "buttons => buttons.map(button => Number(button.dataset.slot))"
+    )
+    assert sorted(slots) == list(range(10)), f"expected ten unique frame slots, got {slots}"
+
+
 def press_slots(page, indices, prefix="quantity"):
     for index in indices:
         page.locator(f'[data-prefix="{prefix}"][data-slot="{index}"]').click()
@@ -47,12 +54,17 @@ def main():
         assert page.get_by_role("heading", name="Show 5.").is_visible()
         assert_no_horizontal_overflow(page)
         assert_button_targets(page)
+        assert_ten_slots(page)
 
         # Wrong answers get a retry cue and cannot reveal the next-round action.
         press_slots(page, [0])
         page.get_by_role("button", name="Check my set").click()
         assert "need 4 more" in page.locator(".feedback").inner_text()
         assert page.get_by_role("button", name="Next set →").count() == 0
+        assert page.locator('[data-prefix="quantity"][aria-pressed="true"]').count() == 1
+        page.get_by_role("button", name="Check my set").click()
+        assert "need 4 more" in page.locator(".feedback").inner_text()
+        assert page.locator('[data-prefix="quantity"][aria-pressed="true"]').count() == 1
         for index in [1, 2, 3, 4]:
             page.locator(f'[data-prefix="quantity"][data-slot="{index}"]').click()
         page.get_by_role("button", name="Check my set").click()
@@ -71,6 +83,7 @@ def main():
 
         # Required make-ten examples plus all five rounds.
         assert page.get_by_role("heading", name="7 + ? = 10").is_visible()
+        assert_ten_slots(page)
         press_slots(page, [7, 8, 9], "bond")
         page.get_by_role("button", name="Check the frame").click()
         assert "7 + 3 = 10" in page.locator(".feedback").inner_text()
@@ -179,6 +192,9 @@ def main():
             "element => getComputedStyle(element).transitionDuration"
         )
         assert duration in ("1e-05s", "0.00001s", "0.01ms")
+        reduced_page.get_by_role("button", name="Start the lesson").click()
+        assert_no_horizontal_overflow(reduced_page)
+        assert_button_targets(reduced_page)
         reduced.close()
 
         # Touch-capable 360px viewport and mobile walkthrough capture.

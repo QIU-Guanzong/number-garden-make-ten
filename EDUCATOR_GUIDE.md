@@ -4,6 +4,7 @@
 
 - **Suggested age:** around 6 years (adult may adapt the language and pacing).
 - **Time:** about 8–12 minutes, with no timer or speed score.
+- **Prerequisites:** none beyond a modern browser; an adult can join but no account, email, or personal information is needed.
 - **Goal:** represent quantities to ten, find missing parts of ten, and use a counter model to reason through addition and subtraction stories.
 - **Materials:** the app only; optional household objects can be used after the lesson to invent another story.
 

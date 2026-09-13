@@ -406,7 +406,11 @@ app.addEventListener("click", (event) => {
     const problem = state.storyIndex >= STORY_PROBLEMS.length ? TRANSFER_PROBLEM : STORY_PROBLEMS[state.storyIndex];
     const answer = answerForStory(problem);
     if (isExactCount(state.storyCount, answer)) setFeedback(`${problem.noun[0].toUpperCase()}${problem.noun.slice(1)}: ${equationForStory(problem)}. Your tray shows ${answer}.`, "good", "story-check");
-    else setFeedback(`Your tray shows ${state.storyCount}. Count the story changes again, then try once more.`, "info", "story-check");
+    else {
+      const firstStep = problem.steps[0];
+      const actionWord = firstStep.sign === "+" ? "count up" : "count back";
+      setFeedback(`Your tray shows ${state.storyCount}. Start at ${problem.start}, then ${actionWord} ${firstStep.amount} one at a time.`, "info", "story-check");
+    }
   } else if (action === "story-next") {
     state.storyIndex += 1;
     state.feedback = "";

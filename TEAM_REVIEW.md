@@ -12,7 +12,7 @@ The initial review found controls below the requested 48 CSS px minimum and focu
 
 ## Cash value and contest risk
 
-The selected Taskmarket entry remains a one-winner contest. The live first-party details checked for this review showed 4 USDC gross, 3.7 USDC net, 129 submissions from 89 submitters, an open entry window, and no guaranteed payout. If entries had equal odds, 90 distinct entrants would imply about a 1.1% chance and around 0.04 USDC expected net value for one entry; this is only a rough baseline, not a forecast. Actual selection depends on quality and the requester's judgment. The monetary upside is small and does not justify prolonged polishing.
+The selected Taskmarket entry remains a one-winner contest. The latest first-party API read (2026-09-13 03:36 UTC) showed 4 USDC gross, 3.7 USDC net, 130 submissions, zero awards so far, and an open entry window. A task-page read shortly before it showed 89 submitters; the API does not expose a refreshed unique-submitter total. The raw entry count alone gives a rough one-entry baseline below 1%, but that is not a forecast because people can submit multiple entries and the requester selects on quality. There is no guaranteed payout. The monetary upside is small and does not justify prolonged polishing.
 
 ## Panel decision
 
