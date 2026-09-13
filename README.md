@@ -6,7 +6,7 @@ A short, calm number lesson for learners around age six. Count objects in a ten-
 
 This is a dependency-free static site. It was tested with Node.js 22.22.3 and Google Chrome 152.0.7977.83. Run it in a current browser with ES modules, CSS Grid, Web Storage, and HTML buttons; other browsers were not included in this verification.
 
-There is no build step and no package installation. From this directory, start a local development or production-preview server:
+There is no build step and no package installation. `package.json` has no runtime or development dependencies, so no lockfile is needed. From this directory, start a local development or production-preview server:
 
 ```sh
 python3 -m http.server 4173 --directory .

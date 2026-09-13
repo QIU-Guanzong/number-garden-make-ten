@@ -186,6 +186,7 @@ def main():
             viewport={"width": 768, "height": 900}, reduced_motion="reduce"
         )
         reduced_page = reduced.new_page()
+        reduced_page.on("pageerror", lambda error: errors.append(str(error)))
         reduced_page.goto("http://127.0.0.1:4173", wait_until="networkidle")
         assert_no_horizontal_overflow(reduced_page)
         duration = reduced_page.locator(".progress-track span").evaluate(
@@ -202,6 +203,7 @@ def main():
             viewport={"width": 360, "height": 800}, is_mobile=True, has_touch=True
         )
         mobile_page = mobile.new_page()
+        mobile_page.on("pageerror", lambda error: errors.append(str(error)))
         mobile_page.goto("http://127.0.0.1:4173", wait_until="networkidle")
         assert_no_horizontal_overflow(mobile_page)
         assert_button_targets(mobile_page)
